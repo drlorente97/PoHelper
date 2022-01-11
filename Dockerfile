@@ -1,4 +1,4 @@
-FROM python:3.9-slim-bullseye
+FROM python:3.9-slim
 
 COPY ./src /usr/src/app
 COPY requirements.txt /usr/src/app
