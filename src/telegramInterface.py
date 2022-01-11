@@ -33,6 +33,11 @@ class telegramInterface():
         time.sleep(1)
         while True:
             try:
+                # Detect termination signal
+                if shutdown.isSet():
+                    message_queue.put('shutdown_threads')
+                    log.warning('Telegram Interface Thread Stopped')
+                    break
                 # Get update list (only one item in list)
                 updateList = bot.getUpdates(offset, limit=1, allowed_updates='message')
                 if props.connection_status == False:
@@ -46,10 +51,6 @@ class telegramInterface():
                     msg = update.get('message')
                     if msg:
                         message_queue.put(msg)
-                elif shutdown.isSet():
-                    message_queue.put('shutdown_threads')
-                    log.warning('Telegram Interface Thread Stopped')
-                    break
             except:
                 log.warning("Can't connect to Telegram API, retriying in 5s...")
                 props.connection_status = False
