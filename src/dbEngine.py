@@ -59,4 +59,4 @@ class dbEngine():
         Initialize bot parameters in database
         TODO: Get bot parameters
         """
-        self.execute('INSERT INTO "ServerInfo" (Initialized) VALUES ("True";')
+        self.execute('INSERT INTO "ServerInfo" ("Initialized") VALUES ("True");')
