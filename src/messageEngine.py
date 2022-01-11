@@ -68,12 +68,12 @@ class messageEngine():
                         if cmd_text in self.adminCmd.list:
                             self.adminCmd.list[cmd_text](msg)
                         else:
-                            self.sendMsg(chat_id, "Comando no encontrado")
+                            self.bot.sendMsg(chat_id, "Comando no encontrado")
                     else:
                         if cmd_text in self.privateCmd.list:
                             self.privateCmd.list[cmd_text](msg)
                         else:
-                            self.sendMsg(chat_id, "No envies comandos al bot, usa los botones")
+                            self.bot.sendMsg(chat_id, "No envies comandos al bot, usa los botones")
             except:
                 self.log.error('Unknown error found, log sent to admin')
                 self.bot.sendMsg(self.props.admin, "⚠Unknown error found: \n\n " + self.tb.format_exc())
