@@ -9,15 +9,15 @@ class general():
         '''
         Constructor
         '''
-        # Connect to web3
-        self.eth = ethConnector.EthConnector(self.props.testnet)
-
         # Set up alias
         self.db = databased
         self.bot = telegram.bot
         self.props = telegram.props
         self.log = telegram.log
         self.msg = telegram.sendMsg
+
+        # Connect to web3
+        self.eth = ethConnector.EthConnector(self.props.testnet)
 
 class private(general):
     def __init__(self, bot, database):
