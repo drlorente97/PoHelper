@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  app:
+    container_name: PoHelper
+    build: .
+    volumes:
+      - /usr/src/app
+    stdin_open: true
+    tty: true
+    command: python3 /usr/src/app/pytelebot.py
