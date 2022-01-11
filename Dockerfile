@@ -1,6 +1,7 @@
 FROM python:3.9.2
 
 COPY ./src /usr/src/app
+COPY requirements.txt
 
 WORKDIR /usr/src/app
 
