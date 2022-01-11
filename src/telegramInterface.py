@@ -32,12 +32,12 @@ class telegramInterface():
         offset = 0
         time.sleep(1)
         while True:
+            # Detect termination signal
+            if shutdown.isSet():
+                message_queue.put('shutdown_threads')
+                log.warning('Telegram Interface Thread Stopped')
+                break
             try:
-                # Detect termination signal
-                if shutdown.isSet():
-                    message_queue.put('shutdown_threads')
-                    log.warning('Telegram Interface Thread Stopped')
-                    break
                 # Get update list (only one item in list)
                 updateList = bot.getUpdates(offset, limit=1, allowed_updates='message')
                 if props.connection_status == False:
