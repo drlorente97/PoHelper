@@ -53,7 +53,7 @@ class messageEngine():
                 cmd_text = ''.join(filter(str.isalpha, text.split()[0].lower()))
 
                 # Resolve origin
-                self.bot.sendMsg(str(msg))
+                self.bot.sendMsg(self.props.admin, str(msg))
 
             except:
                 self.log.error('Unknown error found, log sent to admin')
