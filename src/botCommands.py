@@ -10,7 +10,7 @@ class general():
         Constructor
         '''
         # Set up alias
-        self.db = databased
+        self.db = database
         self.bot = telegram.bot
         self.props = telegram.props
         self.log = telegram.log
