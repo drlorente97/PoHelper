@@ -40,7 +40,7 @@ class crowdfunding(general):
         messageid = str(msg.get('message_id'))
 
         if len(text.split()) == 1:
-            self.sendMsg(chat_id, "Por favor proporcione su direccion de Ethereum a continuacion del comando", reply_to_message_id=messageid)
+            self.bot.sendMsg(chat_id, "Por favor proporcione su direccion de Ethereum a continuacion del comando", reply_to_message_id=messageid)
             return
 
         # Obtain address
@@ -48,15 +48,15 @@ class crowdfunding(general):
 
         # Validate address
         if self.eth.validate(address) == False:
-            self.sendMsg(self.chat, "La direccion de Ethereum proporcionada es invalida", reply_to_message_id=messageid)
+            self.bot.sendMsg(self.chat, "La direccion de Ethereum proporcionada es invalida", reply_to_message_id=messageid)
             return
 
         # Check balance
         if self.eth.balance(address) < 0.06:
-            self.sendMsg(self.chat, "La direccion de Ethereum proporcionada no contiene suficientes Ether para el registro. \n\nBalance actual: " + str(self.eth.balance(address)) + " ETH\n\nPor favor asegure un balance de al menos 0.06 ETH", reply_to_message_id=messageid)
+            self.bot.sendMsg(self.chat, "La direccion de Ethereum proporcionada no contiene suficientes Ether para el registro. \n\nBalance actual: " + str(self.eth.balance(address)) + " ETH\n\nPor favor asegure un balance de al menos 0.06 ETH", reply_to_message_id=messageid)
             return
         # Balance completo
-        self.sendMsg(self.chat, "La direccion de Ethereum contiene un balance de: " + str(self.eth.balance(address)) + " ETH", reply_to_message_id=messageid)
+        self.bot.sendMsg(self.chat, "La direccion de Ethereum contiene un balance de: " + str(self.eth.balance(address)) + " ETH", reply_to_message_id=messageid)
 
 class crowdvoucher(general):
     def __init__(self, bot, database):
