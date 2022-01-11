@@ -1,7 +1,7 @@
 FROM python:3.9-slim-bullseye
 
 COPY ./src /usr/src/app
-COPY requirements.txt
+COPY requirements.txt /usr/src/app
 
 WORKDIR /usr/src/app
 
