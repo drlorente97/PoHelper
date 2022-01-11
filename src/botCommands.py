@@ -11,10 +11,9 @@ class general():
         '''
         # Set up alias
         self.db = database
-        self.bot = telegram.bot
+        self.bot = telegram
         self.props = telegram.props
         self.log = telegram.log
-        self.msg = telegram.sendMsg
 
         # Connect to web3
         self.eth = ethConnector.EthConnector(self.props.testnet)
@@ -40,7 +39,7 @@ class crowdfunding(general):
         messageid = str(msg.get('message_id'))
 
         if len(text.split()) == 1:
-            self.bot.sendMsg(chat_id, "Por favor proporcione su direccion de Ethereum a continuacion del comando", reply_to_message_id=messageid)
+            self.bot.sendMsg(self.chat, "Por favor proporcione su direccion de Ethereum a continuacion del comando", reply_to_message_id=messageid)
             return
 
         # Obtain address
