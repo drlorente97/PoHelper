@@ -21,19 +21,19 @@ class general():
 
 class private(general):
     def __init__(self, bot, database):
-        self.list = {}
         super().__init__(bot, database)
+        self.list = {}
 
 class admin(general):
     def __init__(self, bot, database):
-        self.list = {}
         super().__init__(bot, database)
+        self.list = {}
 
 class crowdfunding(general):
     def __init__(self, bot, database):
-        self.list = {'/add':self.check_balance}
-        self.chat = self.props.crowdfunding
         super().__init__(bot, database)
+        self.list = {'add':self.check_balance}
+        self.chat = self.props.crowdfunding
 
     def check_balance(self, msg):
         text = str(msg.get('text'))
@@ -41,7 +41,7 @@ class crowdfunding(general):
 
         if len(text.split()) == 1:
             self.sendMsg(chat_id, "Por favor proporcione su direccion de Ethereum a continuacion del comando", reply_to_message_id=messageid)
-        return
+            return
 
         # Obtain address
         address = text.split()[1]
@@ -60,6 +60,6 @@ class crowdfunding(general):
 
 class crowdvoucher(general):
     def __init__(self, bot, database):
+        super().__init__(bot, database)
         self.list = {}
         self.chat = self.props.crowdvoucher
-        super().__init__(bot, database)

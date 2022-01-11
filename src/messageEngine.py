@@ -57,22 +57,22 @@ class messageEngine():
                 if type == "supergroup":
                     if chat_id == self.props.crowdfunding:
                         if cmd_text in self.crowdfundingCmd.list:
-                            self.crowdfundingCmd.list[cmd_text](text,chat_id)
+                            self.crowdfundingCmd.list[cmd_text](msg)
                             continue
                     elif chat_id == self.props.crowdvoucher:
                         if cmd_text in self.crowdvoucherCmd.list:
-                            self.crowdvoucherCmd.list[cmd_text](text,chat_id)
+                            self.crowdvoucherCmd.list[cmd_text](msg)
                             continue
                 elif type == "private":
                     if chat_id == self.props.admin:
-                        if cmd_text in self.admimCmd.list:
-                            self.adminCmd.list[cmd_text](text,chat_id)
-                        else
+                        if cmd_text in self.adminCmd.list:
+                            self.adminCmd.list[cmd_text](msg)
+                        else:
                             self.sendMsg(chat_id, "Comando no encontrado")
-                    else
+                    else:
                         if cmd_text in self.privateCmd.list:
-                            self.privateCmd.list[cmd_text](text,chat_id)
-                        else
+                            self.privateCmd.list[cmd_text](msg)
+                        else:
                             self.sendMsg(chat_id, "No envies comandos al bot, usa los botones")
             except:
                 self.log.error('Unknown error found, log sent to admin')
