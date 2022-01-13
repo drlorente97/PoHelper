@@ -18,6 +18,8 @@ class EthConnector:
             f = open('abi.json')
             self.abi = json.load(f)
             f.close()
+        except:
+            None
 
         # Start API
         self.w3 = Web3(Web3.HTTPProvider(full_node))
