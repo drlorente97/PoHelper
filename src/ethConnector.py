@@ -58,4 +58,4 @@ class EthConnector:
         is_human = contractDeployed.functions.isRegistered(address).call()
         return is_human
         #except:
-            return "UnknownError"
+            #return "UnknownError"
