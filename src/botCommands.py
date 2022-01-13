@@ -80,7 +80,7 @@ class private(general):
         self.active_session.pop(chat_id, None)
 
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                   [InlineKeyboardButton(text='Connect Wallet', url='https://bafybeihqinm2fw4vy6q2zou3lif6ffh3lcbcl2s4xdzuu6qm2p2odnsm6y.ipfs.infura-ipfs.io/?tguid={}'.format(chat_id)]
+                   [InlineKeyboardButton(text='Connect Wallet', url='https://bafybeihqinm2fw4vy6q2zou3lif6ffh3lcbcl2s4xdzuu6qm2p2odnsm6y.ipfs.infura-ipfs.io/?tguid={}'.format(chat_id))]
                    ])
         self.bot.sendMsg(chat_id, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot. Luego introduzca el codigo recibido a continuacion", reply_markup=keyboard)
         self.active_session[chat_id] = ['validate','text']
