@@ -43,14 +43,14 @@ class EthConnector:
 
     def validate_signature(self, message, signature, original_address):
         encoded_message = encode_defunct(text=message)
-        try:
-            signature_address = self.w3.eth.account.recover_message(encoded_message, signature=signature)
-            if signature_address == original_address:
-                return True
-            else:
-                return False
-        except:
-            return "BadSignature"
+        #try:
+        signature_address = self.w3.eth.account.recover_message(encoded_message, signature=signature)
+        if signature_address == original_address:
+            return True
+        else:
+            return False
+        #except:
+        #    return "BadSignature"
 
     def validate_humanity(self, address):
         try:
