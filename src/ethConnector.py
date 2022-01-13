@@ -49,7 +49,7 @@ class EthConnector:
                 return True
             else:
                 return False
-        except BadSignature:
+        except:
             return "BadSignature"
 
     def validate_humanity(self, address):
