@@ -7,6 +7,7 @@ import threading
 import telepot
 import time
 import botProps
+import restApi
 
 class telegramInterface():
     def __init__(self, log, shutdown):
