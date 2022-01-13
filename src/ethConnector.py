@@ -42,14 +42,11 @@ class EthConnector:
             csAddress = address
         return csAddress
 
-    def validate_signature(self, message, signature, original_address):
+    def validate_signature(self, message, signature):
         encoded_message = encode_defunct(text=message)
         try:
             signature_address = self.w3.eth.account.recover_message(encoded_message, signature=signature)
-            if signature_address == original_address:
-                return True
-            else:
-                return False
+            return signature_address
         except:
             return "BadSignature"
 
