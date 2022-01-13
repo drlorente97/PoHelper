@@ -49,13 +49,13 @@ class private(general):
             self.bot.sendMsg(chat_id, "Es necesario para hacer uso de las ventajas del bot que connecte su address", reply_markup=self.keyboard_newcommer)
         else:
             is_human = self.eth.validate_humanity(self.__get_address__(chat_id))
-            if is_human == 'true':
+            if is_human == True:
                 self.bot.sendMsg(chat_id, "Address conectada, humanidad validada", reply_markup=self.keyboard)
-            elif is_human == 'false':
+            elif is_human == False:
                 self.bot.sendMsg(chat_id, "Address conectada, aun no validada su humanidad", reply_markup=self.keyboard)
             elif is_human == 'UnknownError':
                 self.log.error('Unknown error detected on ethConnector module')
-                self.bot.sendMsg(self.props.admin, "⚠Unknown error on ethConnector module: \n\n{}".format(self.tb.format_exc()))
+                self.bot.sendMsg(self.props.admin, "⚠Unknown error on ethConnector module")
                 self.bot.sendMsg(chat_id, "Address conectada, no es posible validar humanidad, error reportado al administrador", reply_markup=self.keyboard_cancel)
 
     def __get_address__ (self, chat_id):

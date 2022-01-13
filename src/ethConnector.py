@@ -1,7 +1,6 @@
 # General Declarations
 from web3 import Web3
 from eth_account.messages import encode_defunct
-import json
 
 class EthConnector:
     def __init__(self, testnet=False):
@@ -16,7 +15,7 @@ class EthConnector:
 
         # Load PoH contract ABI
         try:
-            f = open('abi.json')
+            f = open('poh.abi')
             self.abi = json.load(f)
             f.close()
         except:
@@ -54,9 +53,9 @@ class EthConnector:
             return "BadSignature"
 
     def validate_humanity(self, address):
-        #try:
-        contractDeployed = self.w3.eth.contract(address=self.poh_contract, abi=self.abi)
-        is_human = contractDeployed.functions.isRegistered(address).call()
-        return is_human
-        #except:
-            #return "UnknownError"
+        try:
+            contractDeployed = self.w3.eth.contract(address=self.poh_contract, abi=self.abi)
+            is_human = contractDeployed.functions.isRegistered(address).call()
+            return is_human
+        except:
+            return "UnknownError"
