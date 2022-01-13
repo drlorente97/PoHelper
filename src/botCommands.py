@@ -58,7 +58,7 @@ class private(general):
 
     def __new_user__ (self, chat_id):
         cursor = self.db.execute('SELECT * FROM "users" WHERE "id"="{}";'.format(chat_id))
-		if len(cursor) == 0:
+        if len(cursor) == 0:
             self.db.execute('INSERT INTO "users" ("id") VALUES ("{}");'.format(chat_id))
             return True
         else:
@@ -67,7 +67,7 @@ class private(general):
     def read_address (self, msg):
         chat_id = str(msg.get('chat').get('id'))
         self.bot.sendMsg(chat_id, "Por favor introduzca el address a continuacion:")
-        self.active_session[chat_id] = 'connect'
+        self.active_session[chat_id] = "connect"
 
     def connect_wallet (self, msg):
         text = str(msg.get('text'))
