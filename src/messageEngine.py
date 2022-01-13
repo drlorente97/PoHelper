@@ -71,14 +71,14 @@ class messageEngine():
                             self.adminCmd.list[cmd_text](msg)
                             continue
                         if self.active_session.get(chat_id):
-                            self.adminCmd.status[self.active_session.get(chat_id).split[0]](msg)
+                            self.adminCmd.status[self.active_session.get(chat_id).split()[0]](msg)
                     else:
                         if cmd_text in self.privateCmd.list:
                             self.active_session.pop(chat_id, None)
                             self.privateCmd.list[cmd_text](msg)
                             continue
                         if self.active_session.get(chat_id):
-                            self.privateCmd.status[self.active_session.get(chat_id).split[0]](msg)
+                            self.privateCmd.status[self.active_session.get(chat_id).split()[0]](msg)
                             continue
                     # Invalid command
                     self.bot.sendMsg(chat_id, "No envies comandos al bot, usa los botones")
