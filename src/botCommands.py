@@ -37,12 +37,12 @@ class private(general):
 
     def start (self, msg):
         chat_id = str(msg.get('chat').get('id'))
-        if __new_user__(chat_id) == True:
+        if self.__new_user__(chat_id) == True:
             self.bot.sendMsg(chat_id, "Bienvenido al bot PoHelper!\nPara conectar su address por favor presione el boton debajo", reply_markup=self.keyboard_newcommer)
-        elif not __get_address__(chat_id):
+        elif not self.__get_address__(chat_id):
             self.bot.sendMsg(chat_id, "Es necesario para hacer uso de las ventajas del bot que connecte su address", reply_markup=self.keyboard_newcommer)
         else:
-            is_human = self.eth.validate_humanity(__get_address__(chat_id))
+            is_human = self.eth.validate_humanity(self.__get_address__(chat_id))
             if is_human == 'true':
                 self.bot.sendMsg(chat_id, "Address conectada, humanidad validada", reply_markup=self.keyboard)
             elif is_human == 'false':
