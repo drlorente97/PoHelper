@@ -1,3 +1,6 @@
+# PoHelper (PoHelper Telegram bot powered by Python)
+# Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
+
 class botProps():
     def __init__(self):
         self.token = ''

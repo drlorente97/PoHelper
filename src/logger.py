@@ -1,3 +1,6 @@
+# PoHelper (PoHelper Telegram bot powered by Python)
+# Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
+
 # General Declarations
 import time
 import traceback
@@ -29,7 +32,7 @@ class logBox():
         self.screenbuffer = []
         self.prebuffer = []
         self.do_process = True
-    
+
     def add(self, date, messagetype, text):
         self.prebuffer.append([date,messagetype,text])
         if self.do_process == True:

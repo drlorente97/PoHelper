@@ -1,3 +1,6 @@
+# PoHelper (PoHelper Telegram bot powered by Python)
+# Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
+
 # General Declarations
 from web3 import Web3
 from eth_account.messages import encode_defunct

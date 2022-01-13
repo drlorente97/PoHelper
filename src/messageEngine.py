@@ -1,3 +1,6 @@
+# PoHelper (PoHelper Telegram bot powered by Python)
+# Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
+
 # General Declarations
 import dbEngine
 import time

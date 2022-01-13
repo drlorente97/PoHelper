@@ -1,3 +1,6 @@
+# PoHelper (PoHelper Telegram bot powered by Python)
+# Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
+
 # General Declarations
 import queue
 import threading
@@ -17,6 +20,7 @@ class telegramInterface():
         self.log.info('Telegram Inteface started sucessfuly, starting connection')
         handler_thread = threading.Thread(target=self.message_handler, name='Telegram Interface',args=(self.bot, self.message_queue, log, self.props, shutdown))
         handler_thread.start()
+        restApi.run_API()
 
     def sendMsg(self, chat_id, text, **kwargs):
         while True:
