@@ -45,12 +45,12 @@ class EthConnector:
         encoded_message = encode_defunct(text=message)
         try:
             signature_address = self.w3.eth.account.recover_message(encoded_message, signature=signature)
+            print(signature_address)
+            print(original_address)
             if signature_address == original_address:
                 return True
             else:
                 return False
-                print(original_address)
-                print(signature_address)
         except:
             return "BadSignature"
 
