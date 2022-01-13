@@ -1,6 +1,7 @@
 # General Declarations
 from web3 import Web3
 from eth_account.messages import encode_defunct
+import json
 
 class EthConnector:
     def __init__(self, testnet=False):
