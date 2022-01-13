@@ -4,6 +4,6 @@ CREATE TABLE "server_info" (
 );
 CREATE TABLE "users" (
 "id" INTEGER NOT NULL,
-"address" TEXT
+"address" TEXT,
 PRIMARY KEY ("id" ASC)
 );
