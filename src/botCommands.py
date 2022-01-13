@@ -87,7 +87,7 @@ class private(general):
             return
         self.db.execute('UPDATE "users" SET "address" = "{}" WHERE "id"="{}";'.format(signature_address, chat_id))
         self.active_session.pop(chat_id, None)
-        self.log.info('User {} has been connected address {}'.format(chat_id, address))
+        self.log.info('User {} has been connected address {}'.format(chat_id, signature_address))
         self.bot.sendMsg(chat_id, "Address validada correctamente")
 
 
