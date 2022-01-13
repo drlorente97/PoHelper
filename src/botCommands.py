@@ -108,9 +108,9 @@ class admin(private):
         super().__init__(bot, database)
         admin_list = {}
         admin_status_list = {}
-        # Perform list union with private class inheritance
-        self.list = list(set(self.list) | set(admin_list))
-        self.status = list(set(self.status) | set(admin_status_list))
+        # Perform dict merge with private class inheritance
+        self.list.update(admin_list)
+        self.status.update(admin_status_list)
 
 class crowdfunding(general):
     def __init__(self, bot, database):
