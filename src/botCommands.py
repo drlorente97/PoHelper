@@ -75,8 +75,8 @@ class private(general):
         # Validate address
         if self.eth.validate_address(text) == False:
             self.bot.sendMsg(chat_id, "La direccion de Ethereum proporcionada es invalida. Vuelva a intentarlo a continuacion"
-        # Clear active session
-        self.active_session.pop(chat_id, None)
+            # Clear active session
+            self.active_session.pop(chat_id, None)
 
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
                    [InlineKeyboardButton(text='Connect Wallet', url='https://bafybeihqinm2fw4vy6q2zou3lif6ffh3lcbcl2s4xdzuu6qm2p2odnsm6y.ipfs.infura-ipfs.io/?tguid={}'.format(chat_id)],
