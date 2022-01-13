@@ -2,6 +2,7 @@
 import ethConnector
 import time
 import datetime
+import traceback
 from telepot.namedtuple import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 
 class general():
@@ -14,6 +15,7 @@ class general():
         self.bot = telegram
         self.props = telegram.props
         self.log = telegram.log
+        self.tb = traceback
         self.active_session = telegram.props.active_session
 
         # Connect to web3
