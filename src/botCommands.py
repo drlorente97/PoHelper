@@ -24,16 +24,17 @@ class private(general):
         self.list = {'start':self.connect_wallet}
 
     def connect_wallet (self, msg):
+        chat_id = str(msg.get('chat').get('id'))
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
                    [InlineKeyboardButton(text='Connect Wallet', callback_data='press')],
                    ])
-        self.bot.sendMsg(self.chat, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot:", reply_markup=keyboard)
+        self.bot.sendMsg(chat_id, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot:", reply_markup=keyboard)
 
 
 class admin(private):
     def __init__(self, bot, database):
-        self.list = {'start':self.connect_wallet}
         super().__init__(bot, database)
+        self.list = {'start':self.connect_wallet}
 
 class crowdfunding(general):
     def __init__(self, bot, database):
