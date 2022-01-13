@@ -16,6 +16,7 @@ class messageEngine():
         self.props = telegram.props
         self.tb = traceback
         self.log = telegram.log
+        self.active_session = telegram.props.active_session
 
         # Init Database Engine
         self.db = dbEngine.dbEngine(self.log)
@@ -66,14 +67,21 @@ class messageEngine():
                 elif type == "private":
                     if chat_id == self.props.admin:
                         if cmd_text in self.adminCmd.list:
+                            self.active_session.pop(chat_id, None)
                             self.adminCmd.list[cmd_text](msg)
-                        else:
-                            self.bot.sendMsg(chat_id, "Comando no encontrado")
+                            continue
+                        if self.active_session.get(chat_id):
+                            self.adminCmd.status[self.active_session.get(chat_id)[0]](msg)
                     else:
                         if cmd_text in self.privateCmd.list:
+                            self.active_session.pop(chat_id, None)
                             self.privateCmd.list[cmd_text](msg)
-                        else:
-                            self.bot.sendMsg(chat_id, "No envies comandos al bot, usa los botones")
+                            continue
+                        if self.active_session.get(chat_id):
+                            self.privateCmd.status[self.active_session.get(chat_id)[0]](msg)
+                            continue
+                    # Invalid command
+                    self.bot.sendMsg(chat_id, "No envies comandos al bot, usa los botones")
             except:
                 self.log.error('Unknown error found, log sent to admin')
                 self.bot.sendMsg(self.props.admin, "⚠Unknown error found: \n\n " + self.tb.format_exc())
