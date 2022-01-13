@@ -23,6 +23,7 @@ class private(general):
     def __init__(self, bot, database):
         super().__init__(bot, database)
         self.list = {'start':self.start,
+                     'cancelar':self.start,
                      'conectar': self.read_address,
                     }
         self.status = {'connect':self.connect_wallet,
@@ -30,6 +31,9 @@ class private(general):
                         }
         self.keyboard_newcommer = ReplyKeyboardMarkup(keyboard=[
 						[KeyboardButton(text='Conectar Wallet')]
+						], resize_keyboard=True)
+        self.keyboard_cancel = ReplyKeyboardMarkup(keyboard=[
+						[KeyboardButton(text='Cancelar')]
 						], resize_keyboard=True)
         self.keyboard = ReplyKeyboardMarkup(keyboard=[
 						[KeyboardButton(text='Still in development!')]
@@ -50,7 +54,7 @@ class private(general):
             elif is_human == 'UnknownError':
                 self.log.error('Unknown error detected on ethConnector module')
                 self.bot.sendMsg(self.props.admin, "⚠Unknown error on ethConnector module: \n\n{}".format(self.tb.format_exc()))
-                self.bot.sendMsg(chat_id, "Address conectada, no es posible validar humanidad, error reportado al administrador", reply_markup=self.keyboard)
+                self.bot.sendMsg(chat_id, "Address conectada, no es posible validar humanidad, error reportado al administrador", reply_markup=self.keyboard_cancel)
 
     def __get_address__ (self, chat_id):
         address = self.db.execute('SELECT "address" FROM "users" WHERE "id"="{}";'.format(chat_id))[0][0]
@@ -66,7 +70,7 @@ class private(general):
 
     def read_address (self, msg):
         chat_id = str(msg.get('chat').get('id'))
-        self.bot.sendMsg(chat_id, "Por favor introduzca el address a continuacion:")
+        self.bot.sendMsg(chat_id, "Por favor introduzca el address a continuacion:", reply_markup=self.keyboard_cancel)
         self.active_session[chat_id] = "connect"
 
     def connect_wallet (self, msg):
@@ -74,7 +78,8 @@ class private(general):
         chat_id = str(msg.get('chat').get('id'))
         # Validate address
         if self.eth.validate_address(text) == False:
-            self.bot.sendMsg(chat_id, "La direccion de Ethereum proporcionada es invalida. Vuelva a intentarlo a continuacion")
+            self.bot.sendMsg(chat_id, "La direccion de Ethereum proporcionada es invalida. Vuelva a intentarlo a continuacion", reply_markup=self.keyboard_cancel)
+            return
 
         # Clear active session
         self.active_session.pop(chat_id, None)
@@ -82,7 +87,7 @@ class private(general):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
                    [InlineKeyboardButton(text='Connect Wallet', url='https://bafybeihqinm2fw4vy6q2zou3lif6ffh3lcbcl2s4xdzuu6qm2p2odnsm6y.ipfs.infura-ipfs.io/?tguid={}'.format(chat_id))]
                    ])
-        self.bot.sendMsg(chat_id, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot. Luego introduzca el codigo recibido a continuacion", reply_markup=keyboard)
+        self.bot.sendMsg(chat_id, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot. Luego introduzca el codigo recibido a continuacion", reply_markup=self.keyboard_cancel)
         self.active_session[chat_id] = ['validate','text']
 
     def validate_signature (self, msg):
@@ -96,9 +101,10 @@ class private(general):
             self.log.info('User {} has been connected address {}'.format(chat_id, address))
             self.bot.sendMsg(chat_id, "Address validada correctamente")
         elif result == False:
-            self.bot.sendMsg(chat_id, "La firma no coincide con el address proporcionada, por favor asegurese en Metamask que el address en uso es la proporcionada")
+            self.bot.sendMsg(chat_id, "La firma no coincide con el address proporcionada, por favor asegurese en Metamask que el address en uso es la proporcionada", reply_markup=self.keyboard_newcommer)
+            self.active_session.pop(chat_id, None)
         elif result == "BadSignature":
-            self.bot.sendMsg(chat_id, "La firma proporcionada es incorrecta o esta incompleta, asegurese de copiar todo el resultado obtenido de la pagina")
+            self.bot.sendMsg(chat_id, "La firma proporcionada es incorrecta o esta incompleta, asegurese de copiar todo el resultado obtenido de la pagina", reply_markup=self.keyboard_cancel)
 
 
 
