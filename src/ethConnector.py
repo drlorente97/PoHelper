@@ -54,9 +54,9 @@ class EthConnector:
             return "BadSignature"
 
     def validate_humanity(self, address):
-        #try:
-        contractDeployed = self.w3.eth.contract(address=self.poh_contract, abi=self.abi)
-        is_human = contractDeployed.functions.isRegistered(address).call()
-        return is_human
-        #except:
-            #return "UnknownError"
+        try:
+            contractDeployed = self.w3.eth.contract(address=self.poh_contract, abi=self.abi)
+            is_human = contractDeployed.functions.isRegistered(address).call()
+            return is_human
+        except:
+            return "UnknownError"
