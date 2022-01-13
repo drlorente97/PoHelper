@@ -21,12 +21,18 @@ class general():
 class private(general):
     def __init__(self, bot, database):
         super().__init__(bot, database)
-        self.list = {}
+        self.list = {'start':self.connect_wallet}
+
+    def connect_wallet (self, msg):
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                   [InlineKeyboardButton(text='Press me', callback_data='press')],
+                   ])
+        self.bot.sendMsg(self.chat, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot:", reply_markup=keyboard)
+
 
 class admin(general):
     def __init__(self, bot, database):
         super().__init__(bot, database)
-        self.list = {}
 
 class crowdfunding(general):
     def __init__(self, bot, database):
