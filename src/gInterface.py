@@ -16,6 +16,12 @@ def set_colors():
     curses.init_pair(6,curses.COLOR_BLACK,curses.COLOR_WHITE)
 
 def terminate():
+    """
+    Returns terminal to original pre-curses state
+    """
+    curses.nocbreak()
+    stdscr.keypad(False)
+    curses.echo()
     curses.endwin()
 
 class window():
