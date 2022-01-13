@@ -1,6 +1,6 @@
 PRAGMA foreign_keys = OFF;
 CREATE TABLE "server_info" (
-"Initialized"  TEXT
+"initialized"  TEXT
 );
 CREATE TABLE "users" (
 "id" INTEGER NOT NULL,
