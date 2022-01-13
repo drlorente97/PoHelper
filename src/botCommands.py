@@ -2,7 +2,7 @@
 import ethConnector
 import time
 import datetime
-from telepot.namedtuple import KeyboardButton, ReplyKeyboardMarkup
+from telepot.namedtuple import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 
 class general():
     def __init__(self, telegram, database):
@@ -25,13 +25,14 @@ class private(general):
 
     def connect_wallet (self, msg):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                   [InlineKeyboardButton(text='Press me', callback_data='press')],
+                   [InlineKeyboardButton(text='Connect Wallet', callback_data='press')],
                    ])
         self.bot.sendMsg(self.chat, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot:", reply_markup=keyboard)
 
 
-class admin(general):
+class admin(private):
     def __init__(self, bot, database):
+        self.list = {'start':self.connect_wallet}
         super().__init__(bot, database)
 
 class crowdfunding(general):
