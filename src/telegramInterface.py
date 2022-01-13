@@ -7,7 +7,6 @@ import threading
 import telepot
 import time
 import botProps
-import restApi
 
 class telegramInterface():
     def __init__(self, log, shutdown):
@@ -21,7 +20,6 @@ class telegramInterface():
         self.log.info('Telegram Inteface started sucessfuly, starting connection')
         handler_thread = threading.Thread(target=self.message_handler, name='Telegram Interface',args=(self.bot, self.message_queue, log, self.props, shutdown))
         handler_thread.start()
-        restApi.run_API()
 
     def sendMsg(self, chat_id, text, **kwargs):
         while True:
