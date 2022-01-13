@@ -26,7 +26,7 @@ class private(general):
     def connect_wallet (self, msg):
         chat_id = str(msg.get('chat').get('id'))
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                   [InlineKeyboardButton(text='Connect Wallet', callback_data='press')],
+                   [InlineKeyboardButton(text='Connect Wallet', url='https://bafybeihqinm2fw4vy6q2zou3lif6ffh3lcbcl2s4xdzuu6qm2p2odnsm6y.ipfs.infura-ipfs.io/?tguid=' + chat_id)],
                    ])
         self.bot.sendMsg(chat_id, "Por favor haga click en el siguiente botón para conectar tu wallet con el bot:", reply_markup=keyboard)
 
