@@ -17,8 +17,12 @@ def set_colors():
 
 def terminate():
     """
-    Returns terminal to original pre-curses state
+    Revert terminal to original pre-curses state
     """
+    # Clear screen
+    stdscr.clear()
+    stdscr.refresh()
+    # Revert Terminal status
     curses.nocbreak()
     stdscr.keypad(False)
     curses.echo()

@@ -88,8 +88,8 @@ def main(screen):
 			log.warning(f"Message engine thread {name} is stoped")
 		log.warning("Telebot stoped, have a nice day :)")
 		# Exit curses environment
-
 		gInterface.terminate()
+		time.sleep(1)
 		sys.exit(0)
 
 if __name__ == '__main__':
