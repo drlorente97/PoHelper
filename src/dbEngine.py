@@ -9,7 +9,7 @@ class dbEngine():
         Usage:
         Use execute method for execute sql sentences on the database and get the results
         """
-        self.connection = sqlite3.Connection('pytelebot.db')
+        self.connection = sqlite3.Connection('pohelper.db')
         self.cursor = self.connection.cursor()
         if self.testDB() == False:
             log.warning("Database not found, REBUILDING from default")
