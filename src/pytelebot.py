@@ -25,9 +25,14 @@ import telegramInterface
 import messageEngine
 import time
 
+# Initialize Curses Graphic Interface
+stdscr = curses.initscr()
+curses.noecho() # Don't show keyboard input
+curses.cbreak() # Don't require enter to send input
+stdscr.keypad(True)
 
 # Main code
-def main(screen):
+def main(stdscr):
 	# Draw main window
 	mainWindow = gInterface.intro()
 	mainWindow.build()
@@ -88,7 +93,7 @@ def main(screen):
 			log.warning(f"Message engine thread {name} is stoped")
 		log.warning("Telebot stoped, have a nice day :)")
 		# Exit curses environment
-		gInterface.terminate()
+		gInterface.terminate(stdscr)
 		time.sleep(1)
 		sys.exit(0)
 
