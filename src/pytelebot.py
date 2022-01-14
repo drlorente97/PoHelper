@@ -15,7 +15,6 @@
 
 # General Declarations
 import sys
-import curses
 from curses import wrapper
 import threading
 import signalHandler
@@ -26,14 +25,8 @@ import telegramInterface
 import messageEngine
 import time
 
-# Initialize Curses Graphic Interface
-stdscr = curses.initscr()
-curses.noecho() # Don't show keyboard input
-curses.cbreak() # Don't require enter to send input
-stdscr.keypad(True)
-
 # Main code
-def main(stdscr):
+def main(screen):
 	# Draw main window
 	mainWindow = gInterface.intro()
 	mainWindow.build()
@@ -93,19 +86,8 @@ def main(stdscr):
 			name = thread.getName()
 			log.warning(f"Message engine thread {name} is stoped")
 		log.warning("Telebot stoped, have a nice day :)")
-		# Exit curses environment
-		gInterface.terminate(stdscr)
-		time.sleep(1)
-		sys.exit(0)
 
 if __name__ == '__main__':
 	# Launch wrapper on main
 	wrapper(main)
-
-	# Revert Terminal to Previous Status
-	stdscr.clear()
-	stdscr.refresh()
-	curses.nocbreak()
-	stdscr.keypad(False)
-	curses.echo()
-	curses.endwin()
+	sys.exit(0)
