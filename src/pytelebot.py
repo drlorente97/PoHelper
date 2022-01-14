@@ -90,4 +90,3 @@ def main(screen):
 if __name__ == '__main__':
 	# Launch wrapper on main
 	wrapper(main)
-	sys.exit(0)
