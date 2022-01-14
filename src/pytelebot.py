@@ -101,3 +101,11 @@ def main(stdscr):
 if __name__ == '__main__':
 	# Launch wrapper on main
 	wrapper(main)
+
+	# Revert Terminal to Previous Status
+	stdscr.clear()
+	stdscr.refresh()
+	curses.nocbreak()
+	stdscr.keypad(False)
+	curses.echo()
+	curses.endwin()
