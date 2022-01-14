@@ -15,6 +15,7 @@
 
 # General Declarations
 import sys
+import curses
 from curses import wrapper
 import threading
 import signalHandler
