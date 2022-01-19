@@ -123,7 +123,7 @@ class crowdfunding(general):
         address = text.split()[1]
 
         # Validate address
-        if self.eth.validate(address) == False:
+        if self.eth.validate_address(address) == False:
             self.bot.sendMsg(self.chat, "La direccion de Ethereum proporcionada es invalida", reply_to_message_id=messageid)
             return
 
