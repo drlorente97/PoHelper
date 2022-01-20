@@ -2,11 +2,12 @@
 # Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
 
 # General Declarations
-import dbEngine
-import time
-import botCommands
 import traceback
+import time
 
+# Import Modules
+import dbEngine
+import botCommands
 
 class messageEngine():
     def __init__(self, telegram, num):

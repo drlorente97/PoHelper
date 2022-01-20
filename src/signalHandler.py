@@ -3,7 +3,6 @@
 
 # General Declarations
 import signal
-import sys
 import threading
 
 class signalHandler():

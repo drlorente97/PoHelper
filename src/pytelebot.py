@@ -14,16 +14,18 @@
 # limitations under the License.
 
 # General Declarations
-import sys
 from curses import wrapper
 import threading
+import time
+
+# Import Modules
 import signalHandler
 import logger
 import dbEngine
 import gInterface
 import telegramInterface
 import messageEngine
-import time
+
 
 # Main code
 def main(screen):

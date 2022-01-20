@@ -2,11 +2,13 @@
 # Copyright (C) 2022  drlorente97.eth <drlorente97@gmail.com>
 
 # General Declarations
-import ethConnector
+from telepot.namedtuple import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 import time
 import datetime
 import traceback
-from telepot.namedtuple import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+
+# Import Modules
+import ethConnector
 
 class general():
     def __init__(self, telegram, database):
